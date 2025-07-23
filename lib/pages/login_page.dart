@@ -1,3 +1,4 @@
+import 'package:chatapp/auth/auth_service.dart';
 import 'package:chatapp/components/my_button.dart';
 import 'package:chatapp/components/my_textfield.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,17 @@ class LoginPage extends StatelessWidget {
 
   LoginPage({super.key, required this.onTap});
 
-  void login(){}
+  void login(BuildContext context) async{
+    final authService = AuthService();
+    try{
+      await authService.signIn(emailController.text, passwordController.text);
+    } catch (e){
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.toString()))
+      );
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +56,7 @@ class LoginPage extends StatelessWidget {
             ),
             SizedBox(height: 25,),
             MyButton(
-                onTap: login,
+                onTap: () => login(context),
                 text: "Login"
             ),
             SizedBox(height: 25,),
