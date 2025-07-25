@@ -1,11 +1,11 @@
-import 'package:chatapp/auth/login_or_register.dart';
 import 'package:chatapp/firebase_options.dart';
 import 'package:chatapp/pages/login_page.dart';
+import 'package:chatapp/services/auth/auth_gate.dart';
 import 'package:chatapp/theme/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import 'auth/auth_gate.dart';
+
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();

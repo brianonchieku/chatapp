@@ -1,7 +1,8 @@
-import 'package:chatapp/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:chatapp/components/my_button.dart';
 import 'package:chatapp/components/my_textfield.dart';
+
+import '../services/auth/auth_service.dart';
 
 class RegisterPage extends StatelessWidget {
   final void Function()? onTap;
