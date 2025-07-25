@@ -1,8 +1,13 @@
+import 'package:chatapp/services/auth/auth_service.dart';
+import 'package:chatapp/services/chat/chart_service.dart';
 import 'package:flutter/material.dart';
 
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+
+  final ChatService chatService = ChatService();
+  final AuthService authService = AuthService();
 
 
 
