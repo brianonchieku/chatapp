@@ -60,24 +60,48 @@ class ChatPage extends StatelessWidget {
 
   Widget buildMessageItem(DocumentSnapshot doc){
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-    return Text(data['message']);
+
+    //is current user
+    bool isCurrentUser = data['senderID'] == authService.currentUer()!.uid;
+    var alignment = isCurrentUser ? Alignment.centerRight : Alignment.centerLeft;
+
+    return Container(
+      alignment: alignment,
+        child: Column(
+          crossAxisAlignment: isCurrentUser? CrossAxisAlignment.end : CrossAxisAlignment.start,
+          children: [
+            Text(
+                data['message']),
+          ],
+        )
+    );
   }
 
   Widget buildUserInput(){
-    return Row(
-      children: [
-        Expanded(
-            child: MyTextfield(
-                hintText: "Type a message",
-                obscureText: false,
-                controller: messageController
-            )
-        ),
-        IconButton(
-            onPressed: sendMessage,
-            icon: Icon(Icons.send)
-        )
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 50),
+      child: Row(
+        children: [
+          Expanded(
+              child: MyTextfield(
+                  hintText: "Type a message",
+                  obscureText: false,
+                  controller: messageController
+              )
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.green,
+              shape: BoxShape.circle
+            ),
+            margin: EdgeInsets.only(right: 25),
+            child: IconButton(
+                onPressed: sendMessage,
+                icon: Icon(Icons.send, color: Colors.white,)
+            ),
+          )
+        ],
+      ),
     )
   }
 }
